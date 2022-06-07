@@ -56,6 +56,9 @@ struct ContentView: View {
 
                 // 4. Pick one random word, or use "silkworm" as a sensible default
                 rootWord = allWords.randomElement() ?? "silkworm"
+                
+                // Clear used words
+                usedWords.removeAll()
 
                 // If we are here everything has worked, so we can exit
                 return
@@ -121,6 +124,11 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("WordScramble")
+            .toolbar {
+                Button("Restart") {
+                    startGame()
+                }
+            }
         }
         .onSubmit(addNewWord)
         .onAppear(perform: startGame)
