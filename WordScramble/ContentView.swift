@@ -102,6 +102,12 @@ struct ContentView: View {
         NavigationView {
             List {
                 Section {
+                    Text(rootWord)
+                        .font(.largeTitle)
+                } header: {
+                    Text("Current Word:")
+                }
+                Section {
                     TextField("Enter your word", text: $newWord)
                         .textInputAutocapitalization(.never)
                 }
@@ -114,9 +120,8 @@ struct ContentView: View {
                     }
                 }
             }
-            
+            .navigationTitle("WordScramble")
         }
-        .navigationTitle(rootWord)
         .onSubmit(addNewWord)
         .onAppear(perform: startGame)
         .alert(errorTitle, isPresented: $showingError) {
